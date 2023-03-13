@@ -27,12 +27,23 @@ public class LoadSpecificScene : MonoBehaviour
     [SerializeField]
     private IEnumerator loadNextScene()
     {
-        Debug.Log("start coroutine");
-        Debug.Log("start FadeIn");
         fadeSystem.SetTrigger("FadeIn");
         yield return new WaitForSeconds(0.5f);
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneName);
+        Camera camera;
+
+        switch (sceneName)
+        {
+            case "Level01":
+                break;
+            case "Level02":
+                camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = new Color(0.333f, 0.786f, 0.980f);
+                break;
+            default: break;
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
