@@ -26,6 +26,11 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H)) {
             TakeDamage(20);
         }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GainHealth(10);
+        }
+        currentHealth = (int)healthBar.slider.value;
     }
 
     public void TakeDamage(int damage)
@@ -38,6 +43,14 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(InvincibilityFlash());
             StartCoroutine(HandleInvincibilityDelay());
         }
+    }
+
+    public void GainHealth(int heal)
+    {
+        int healAmount = currentHealth + heal <= maxHealth ? heal : maxHealth - currentHealth;
+        Debug.Log(currentHealth);
+        Debug.Log(healAmount);
+        healthBar.setHealth(currentHealth + healAmount);
     }
 
     public IEnumerator InvincibilityFlash()
