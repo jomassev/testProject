@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Vector2 lastCheckpoint;
+
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
@@ -29,11 +31,11 @@ public class PlayerMovement : MonoBehaviour
     {
         isJumping = false;
         isGrounded = false;
+        this.lastCheckpoint = transform.position;
     }
 
     private void Update()
     {
-        /*isJumping = Input.GetKeyDown(KeyCode.Space) && isGrounded ? true : false;*/
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -82,5 +84,15 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    public void SetLastCheckpoint(Vector2 checkpointPosition)
+    {
+        this.lastCheckpoint = checkpointPosition;
+    }
+
+    public Vector2 GetLastCheckpoint()
+    {
+        return this.lastCheckpoint;
     }
 }
