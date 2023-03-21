@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b8cdee8bb06aeb54c85c3baa92603b85
+guid: 3e61f2f6dd8a0f24dbe1c77f6232ecf9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 70
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,122 +101,173 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: food_items16x16_0
+      name: flag-red-white_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 31
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2893423d5c8c70840abc5f0dd7949318
-      internalID: 999830442
+      spriteID: 5cc709c68dc3a0841aaefd9c6fb4efa7
+      internalID: 1450925218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food_items16x16_1
+      name: flag-red-white_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 31
         y: 0
-        width: 16
-        height: 16
+        width: 31
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a1c4c217c63c50408c706ad994ca11c
-      internalID: 2040900198
+      spriteID: b1e0f4df5861d544183c0cbc6f75383d
+      internalID: -1980558463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food_items16x16_2
+      name: flag-red-white_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 62
         y: 0
-        width: 16
-        height: 16
+        width: 31
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3e282dc2de269a4fb310a002ffa7a7f
-      internalID: 530658956
+      spriteID: a35d4b6592dcb0e4d88bbeb253c6cdcc
+      internalID: 32716255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food_items16x16_3
+      name: flag-red-white_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 93
         y: 0
-        width: 16
-        height: 16
+        width: 31
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00afc71a4b33f9c4f92dfa6325f92c0c
-      internalID: 2025717933
+      spriteID: d36527bb1fe32ec46bd8d4027cd44393
+      internalID: -1898608095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food_items16x16_4
+      name: flag-red-white_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 124
         y: 0
-        width: 16
-        height: 16
+        width: 31
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 918a65483f58ff04fb108d6797297ef2
-      internalID: 2113878772
+      spriteID: e50f7c3812392914880f6efbacf7afd0
+      internalID: -1655535011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-red-white_5
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 0
+        width: 31
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e2aed12c255398459f20b1fa9f0c7ad
+      internalID: -257954343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-red-white_6
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 0
+        width: 31
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bda39bebb3c55b4cb0a72100924db25
+      internalID: 1943681036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-red-white_7
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 0
+        width: 31
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ae9c05b636f54c4f92b04442aa340cc
+      internalID: 153701273
       vertices: []
       indices: 
       edges: []
@@ -232,11 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      food_items16x16_0: 999830442
-      food_items16x16_1: 2040900198
-      food_items16x16_2: 530658956
-      food_items16x16_3: 2025717933
-      food_items16x16_4: 2113878772
+      flag-red-white_0: 1450925218
+      flag-red-white_1: -1980558463
+      flag-red-white_2: 32716255
+      flag-red-white_3: -1898608095
+      flag-red-white_4: -1655535011
+      flag-red-white_5: -257954343
+      flag-red-white_6: 1943681036
+      flag-red-white_7: 153701273
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

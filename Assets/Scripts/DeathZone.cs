@@ -6,14 +6,14 @@ public class DeathZone : MonoBehaviour
     private Animator fadeSystem;
     private GameObject player;
     private PlayerHealth playerHealth;
-    private PlayerMovement playerMovement;
+    private Transform playerSpawn;
 
     private void Awake()
     {
         fadeSystem = GameObject.FindGameObjectWithTag("FadeSystem").GetComponent<Animator>();
+        playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
-        playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +28,7 @@ public class DeathZone : MonoBehaviour
     {
         fadeSystem.SetTrigger("FadeIn");
         yield return new WaitForSeconds(0.5f);
-        collision.transform.position = playerMovement.GetLastCheckpoint();
+        collision.transform.position = playerSpawn.position;
         fadeSystem.SetTrigger("FadeOut");
         playerHealth.TakeDamage(30);
     }

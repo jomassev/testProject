@@ -49,7 +49,7 @@ public class LoadSpecificScene : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.isLoaded) {
-
+            Debug.Log("Loaded");
         fadeSystem.SetTrigger("FadeOut");
         }
     }

@@ -1,11 +1,7 @@
-
-using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector2 lastCheckpoint;
-
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
@@ -22,16 +18,23 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+
     private bool isJumping;
     private bool isGrounded;
+    public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
+    private bool isClimbing;
+    public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
+
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
+    private float verticalMovement;
+
 
     private void Start()
     {
         isJumping = false;
         isGrounded = false;
-        this.lastCheckpoint = transform.position;
+        IsClimbing = false;
     }
 
     private void Update()
@@ -46,36 +49,50 @@ public class PlayerMovement : MonoBehaviour
 
         float characterVelocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
+        animator.SetBool("isClimbing", isClimbing);
     }
 
     private void FixedUpdate()
     {
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        verticalMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
 
-        MovePlayer(horizontalMovement);
+        MovePlayer(horizontalMovement, verticalMovement);
     }
 
-    void MovePlayer(float _horizontalMovement)
+    void MovePlayer(float _horizontalMovement, float _verticalMovement)
     {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
 
-        if (isJumping)
+        if (!IsClimbing)
         {
-            rb.AddForce(new Vector2(0f, jumpForce));
-            isJumping = false;
+            Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
+
+            if (isJumping)
+            {
+                rb.AddForce(new Vector2(0f, jumpForce));
+                isJumping = false;
+            }
+        }
+        else
+        {
+            // Déplacement vertical
+            Vector3 targetVelocity = new Vector2(0, _verticalMovement);
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
         }
 
     }
 
     void Flip(float _velocity)
     {
-        if(_velocity > 0.1f)
+        if (_velocity > 0.1f)
         {
             spriteRenderer.flipX = false;
-        } else if(_velocity < -0.1f) {
+        }
+        else if (_velocity < -0.1f)
+        {
             spriteRenderer.flipX = true;
         }
     }
@@ -84,15 +101,5 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-    }
-
-    public void SetLastCheckpoint(Vector2 checkpointPosition)
-    {
-        this.lastCheckpoint = checkpointPosition;
-    }
-
-    public Vector2 GetLastCheckpoint()
-    {
-        return this.lastCheckpoint;
     }
 }
