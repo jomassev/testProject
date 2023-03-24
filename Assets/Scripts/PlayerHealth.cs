@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,6 +13,19 @@ public class PlayerHealth : MonoBehaviour
     public float invincibilityTime;
     public float invicibilityFlashDelay;
 
+    public static PlayerHealth instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("Il y a plus d'une instance de PlayerHealth");
+            return;
+        }
+
+        instance = this;
+    }
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -23,8 +36,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H)) {
-            TakeDamage(20);
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            TakeDamage(60);
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -37,12 +51,35 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvincible)
         {
-        currentHealth -= damage;
-        healthBar.setHealth(currentHealth);
+            currentHealth -= damage;
+            healthBar.setHealth(currentHealth);
+
+            if (currentHealth <= 0)
+            {
+                Die();
+                return;
+            }
+
             isInvincible = true;
             StartCoroutine(InvincibilityFlash());
             StartCoroutine(HandleInvincibilityDelay());
         }
+    }
+
+    public void Die()
+    {
+        // Bloquer mouvements du perso
+        PlayerMovement.instance.enabled = false;
+
+        // Jouer animation de mort
+        PlayerMovement.instance.Animator.SetTrigger("Death");
+
+        // Empêcher interactions avec autres éléments de la scène
+        PlayerMovement.instance.Rb.bodyType = RigidbodyType2D.Kinematic;
+        PlayerMovement.instance.PlayerCollider.enabled = false;
+
+        // Lance le menu Game Over
+        GameOverManager.instance.OnPlayerDeath();
     }
 
     public void GainHealth(int heal)
@@ -55,7 +92,7 @@ public class PlayerHealth : MonoBehaviour
 
     public IEnumerator InvincibilityFlash()
     {
-        while(isInvincible)
+        while (isInvincible)
         {
             graphics.color = new Color(1f, 1f, 1f, 0f);
             yield return new WaitForSeconds(invicibilityFlashDelay);

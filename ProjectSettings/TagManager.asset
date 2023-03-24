@@ -9,6 +9,8 @@ TagManager:
   - Apple
   - PlayerSpawn
   - Checkpoint
+  - PressE
+  - GameOver
   layers:
   - Default
   - TransparentFX

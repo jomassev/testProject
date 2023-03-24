@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
+    private float climbSpeed;
+    [SerializeField]
     private float jumpForce;
     [SerializeField]
     private Transform groundCheck;
@@ -18,17 +20,34 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private CapsuleCollider2D playerCollider;
 
     private bool isJumping;
     private bool isGrounded;
-    public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
     private bool isClimbing;
-    public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
     private float verticalMovement;
+    public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
+    public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
+    public Animator Animator { get => animator; set => animator = value; }
+    public Rigidbody2D Rb { get => rb; set => rb = value; }
+    public CapsuleCollider2D PlayerCollider { get => playerCollider; set => playerCollider = value; }
 
+    public static PlayerMovement instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("Il y a plus d'une instance de PlayerMovement");
+            return;
+        }
+
+        instance = this;
+    }
 
     private void Start()
     {
@@ -39,8 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isClimbing)
         {
             isJumping = true;
         }
@@ -54,8 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        verticalMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.fixedDeltaTime;
+        verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.fixedDeltaTime;
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayer);
 
